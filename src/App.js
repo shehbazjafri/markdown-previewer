@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import marked from "marked";
-import "./App.css";
+import "./App.scss";
 
 function App() {
   const defaultMD = require("./defaultMarkdown.md");
@@ -21,17 +21,26 @@ function App() {
   };
   return (
     <div className="App">
-      <textarea
-        id="editor"
-        value={markdownText}
-        onChange={onTextChange}
-      ></textarea>
-      <div
-        id="preview"
-        dangerouslySetInnerHTML={{
-          __html: marked(markdownText, { gfm: true, breaks: true })
-        }}
-      ></div>
+      <header>
+        <h1>Markdown Previewer</h1>
+      </header>
+      <div className="editor-container">
+        <div className="title">Editor</div>
+        <textarea
+          id="editor"
+          value={markdownText}
+          onChange={onTextChange}
+        ></textarea>
+      </div>
+      <div className="preview-container">
+        <div className="title">Preview</div>
+        <div
+          id="preview"
+          dangerouslySetInnerHTML={{
+            __html: marked(markdownText, { gfm: true, breaks: true })
+          }}
+        ></div>
+      </div>
     </div>
   );
 }
